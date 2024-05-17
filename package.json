@@ -1,0 +1,22 @@
+{
+  "name": "neiplayer-main",
+  "version": "1.0.0",
+  "description": "A modern music player",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [
+    "music"
+  ],
+  "author": "Neil344",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^30.0.6"
+  },
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "music-metadata-browser": "^2.5.10",
+    "path": "^0.12.7"
+  }
+}
