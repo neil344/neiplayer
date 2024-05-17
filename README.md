@@ -1,6 +1,11 @@
 ## Neiplayer
 
 neiplayer is a modern music player application built using Electron, HTML, CSS, and JavaScript. It provides a sleek interface for playing audio files, managing playlists, and controlling playback.
+
+![Screenshot 2024-05-17 114702](https://github.com/neil344/neiplayer/assets/51335950/3d1862c3-ef5c-43cf-9bee-a3ecf857e143)
+
+
+
 Features
 
     Play Audio: Load and play audio files in various formats such as MP3, WAV, and OGG.
