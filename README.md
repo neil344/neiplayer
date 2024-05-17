@@ -19,8 +19,14 @@ Features
         Clone the repository or download the project files to your local machine.
         Navigate to the project directory.
 
-    Installation
-        Run npm install to install the required dependencies.
+    Installation 
+    Initialize your project: First, create a new directory for your Electron project and navigate into it using your terminal or command prompt.
+    Initialize npm: If you haven't already set up npm in your project, you can do so by running:
+    npm init -y
+    Run npm install to install the required dependencies.
+    Install Electron by running:
+    npm install electron --save-dev
+
 
     Running the Application
         Run npm start to start the Electron application.
