@@ -1,0 +1,220 @@
+<!-- Created by Neil344 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>neiplayer</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+  }
+
+  @keyframes gradientBG {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .music-card {
+    width: 700px;
+    height: 500px;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease;
+  }
+
+  .music-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .music-card .music-icon {
+    font-size: 100px;
+    color: #333;
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  .music-info {
+    padding: 20px;
+    text-align: center;
+  }
+
+  .music-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+  }
+
+  .music-artist {
+    color: #666;
+    font-size: 0.9rem;
+  }
+
+  .music-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+
+  .music-controls button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    outline: none;
+  }
+
+  .music-controls button:hover {
+    background-color: #45a049;
+  }
+
+  .music-controls button i {
+    margin-right: 8px;
+  }
+
+  .seek-bar-container {
+    width: 70%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  input[type="range"] {
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    background: #ccc;
+    outline: none;
+    height: 5px;
+    border-radius: 5px;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .playlist {
+    margin-top: 20px;
+    text-align: center;
+    height: 200px; /* Adjust this height as needed */
+    overflow-y: auto;
+    width: 50%; /* Adjust width to match player */
+  }
+
+  .playlist ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .playlist li {
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .playlist li:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+
+  #save-playlist {
+    margin-top: 10px;
+  }
+
+  /* Scrollbar Styling */
+  .playlist::-webkit-scrollbar {
+    width: 10px; /* Adjust scrollbar width */
+  }
+
+  .playlist::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.3); /* Adjust background color */
+  }
+
+  .playlist::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.5); /* Adjust scrollbar thumb color */
+  }
+</style>
+</head>
+<body>
+
+<div class="music-card">
+  <div class="music-icon"><i class="fas fa-music"></i></div>
+  <div class="music-info">
+    <div class="music-title">No Song Selected</div>
+    <div class="music-artist">&nbsp;</div>
+    <div class="seek-bar-container">
+      <input type="range" id="seek-bar" value="0">
+    </div>
+    <div class="music-controls">
+      <button id="pick-music"><i class="fas fa-folder-open"></i> Pick Music</button>
+      <button onclick="play()"><i class="fas fa-play"></i> Play</button>
+      <button onclick="pause()"><i class="fas fa-pause"></i> Pause</button>
+      <button onclick="stop()"><i class="fas fa-stop"></i> Stop</button>
+      <button id="add-to-playlist"><i class="fas fa-plus"></i> Add to Playlist</button>
+    </div>
+  </div>
+  <audio id="audio-player" src="" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+</div>
+
+<div class="playlist">
+  <h3>Playlist</h3>
+  <ul id="playlist"></ul>
+  <button id="save-playlist"><i class="fas fa-save"></i> Save Playlist</button>
+</div>
+
+<script src="renderer.js"></script>
+</body>
+</html>
